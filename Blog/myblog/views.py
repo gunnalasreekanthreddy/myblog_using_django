@@ -10,17 +10,20 @@ def hello(request):
         cid = request.POST.get('name')
         blogid = categoryblog.objects.filter( cid_id= cid)
         # print(getattr[blogid,'2'])
-        blogs=[]
+        blog_list = []
+        Blog_author = []
         for b in blogid:
             data = myblog.objects.get(id = b.bid_id)
-
-            blogs.append(data)
+            author_name= auther.objects.get(id = data.author_id)
+            Blog_author.append(author_name)
+            blog_list.append(data)
         cat = category.objects.all()
-        return render(request,'welcom.html',{'data':blogs,'category':cat})
+        return render(request,'welcom.html',{'bloglist':blog_list,'authorlist':Blog_author,'category':cat})
     else :
         data = myblog.objects.all()
+        auth = auther.objects.all()
         cat = category.objects.all()
-        return render(request,'welcom.html',{'data':data,'category':cat})
+        return render(request,'welcom.html',{'bloglist':data,'authorlist':auth,'category':cat })
 
 def addcateg(request):
     cat = category.objects.all()
