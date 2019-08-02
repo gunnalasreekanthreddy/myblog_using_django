@@ -14,56 +14,24 @@
 <body>
 
   <div class="page-header" style="background: linear-gradient(to right,  #F0E68C 40%,#FFE4B5 60%);height: 25% ">
+    <div class="row">
   <a href="/"> <img src="{%static "images/my.png"%}"></a>
 </div>
-<div class="row p-5">
-<h1  style="background: linear-gradient(to right,  #F0E68C 40%,#FFE4B5 60%);height: 5% ">{{msg}}</h1>
+<div class="wrap-login100 p-t-30 p-b-50">
+
+        <div class="row" >
+
+        <form method="POST" action="/mail/">{%csrf_token %}
+          <div class=" col-sm">
+         <label> enter otp</label>
+         <input type="text" name="otp" required>
+         <input type="hidden" name = "potp" value="{{otp}}">
+         </div> </div>
+         <div class="row col-sm-5">
+           <input type="submit" value="submit">
+           </div>
+         </form>
+			</div>
 </div>
-<div class="row" >
-
-<form method="POST" action="/createblog/">{%csrf_token %}
-  <div class=" col-sm">
- <label> enter gmail</label>
- <input type="email" name="email" required>
-
- </div> </div>
- <br>
- <div class="row">
- <div class="col-sm">
-<label> enter blog title</label>
-  <input type="type" name="title" required>
-  </div></div><br>
-  <div class="row">
-  <div class="col-sm">
-  <label> select category</label>
-  <select name="category" required>
-  {% for item in category%}
-     <option value="{{item.id}}">{{item.bcategory}}</option>
-   {%endfor%}
- </select>
- </div> </div>
- <br>
- <div class="row col-sm">
-<label> upload image</label>
-<input type="file" name="image" required>
-</div>
-<br>
-<br>
-<div class="row col-sm-5">
-<label> enter blog discription</label>
-
-
-<textarea rows="10" cols="50" name="discription" required>
-</textarea>
-</div>
-<br>
-<div class="row col-sm-5">
-  <input type="submit" value="submit">
-  </div>
-</form>
-</div>
-
-
-
 </body>
 </html>

@@ -16,6 +16,7 @@
   <div class="page-header" style="background: linear-gradient(to right,  #F0E68C 40%,#FFE4B5 60%);height: 25% ">
     <div class="row">
   <a href="/"> <img src="{%static "images/my.png"%}"></a>
+
    {% for ddb in category%}
 
       <form method="POST" action="/">{%csrf_token %}
@@ -26,26 +27,41 @@
       </form>
 
      {% endfor %}
- <a href="/createblog/"> add blog </a>
-
+     <form method="POST" action="/mail/">{%csrf_token %}
+       <input type="hidden" name="" value="">
+       <div class="col-sm">
+       <input type="submit" value="addblog">
+       </div>
+     </form>
  </div>
   </div>
+    <center> <h2 style="background: linear-gradient(to right,  #F0E68C 40%,#FFE4B5 60%);height: 5% ">{{name}}</h2></center>
   <div class="row">
-{% for db in data%}
-<div class="col-sm-6">
-  <label> <strong>author :</strong></label>
-   <p>{{ db.bauther}} </p>
- <label> <strong>title</strong></label>
- <p>{{db.btitle}}</p>
-<label><strong> bdate :</strong></label>
-<p> {{db.bdate}}</p>
-<img src="static/images/{{db.bimage}}"  width="304" height="236">
-<br>
-<label> <strong>bdiscription:</strong></label>
- <p>{{db.bdiscription}}</p>
- <p>===============================================================================</p>
+
+    {% for db in bloglist %}
+    {% for author in authorlist %}
+    {% if db.author_id == author.id%}
+          <div class="p-5 col-sm-6">
+            <div class="card">
+              <div class="card body border-success" >
+            <label> <strong>author :</strong></label>
+             <p>{{ author.bauthor}} </p>
+           <label> <strong>title</strong></label>
+           <p>{{db.btitle}}</p>
+          <label><strong> bdate :</strong></label>
+          <p> {{db.bdate}}</p>
+          <img src="static/images/{{db.bimage}}"  width="304" height="236">
+          <br>
+          <label> <strong>bdiscription:</strong></label>
+           <p>{{db.bdiscription}}</p>
+         </div>
+         </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+
 </div>
- {% endfor %}
-</div>
+
 </body>
 </html>

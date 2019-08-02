@@ -20,7 +20,7 @@
       <div class="col-sm-4">
 <form method="POST" action="/addcategory/">{%csrf_token %}
   <label> enter new category </label>
-  <input type="text" name="category">
+  <input type="text" name="category" required>
   <input type="submit" value="submit">
 </form>
 </div>
@@ -37,6 +37,7 @@
 </table>
 </div>
 </div>
+<h1>{{msg}} </h1>
 <center>
 </body>
 </html>
